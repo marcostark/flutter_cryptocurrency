@@ -4,7 +4,9 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
 void main() async{
+
   List currencies = await getListCoin();
+
   runApp(new MaterialApp(
     home: CryptoListWidget(currencies)
   ));
@@ -24,7 +26,7 @@ void main() async{
 //}
 
 Future<List> getListCoin() async {
-  String apiUrl = 'https://api.coinmarketcap.com/v1/ticker/?limit=10';
+  String apiUrl = 'https://api.coinmarketcap.com/v1/ticker/?limit=25';
   http.Response response = await http.get(apiUrl);
   return json.decode(response.body);
 }
@@ -34,6 +36,8 @@ class CryptoListWidget extends StatelessWidget {
   final List<MaterialColor> _colors = [Colors.blue, Colors.indigo, Colors.red];
   // Lista contendo todos os dados retornado pela api
   final List _currencies;
+
+
 
   CryptoListWidget(this._currencies);
 
@@ -91,8 +95,8 @@ class CryptoListWidget extends StatelessWidget {
     return new Container (
         //padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
         child: Image.network('https://res.cloudinary.com/dxi90ksom/image/upload/${currencySymbol}'),
-        width:60.0,
-        height: 60.0,
+        width:56.0,
+        height: 56.0,
     );
   }
 
@@ -113,7 +117,8 @@ class CryptoListWidget extends StatelessWidget {
 
   Text _getSubTitleWidget(String priceUsd, String percentChange1h) {
     return new Text(
-        '\$${double.parse(priceUsd).toStringAsFixed(2)}\n1 hour: $percentChange1h%'
+        '\$${double.parse(priceUsd).toStringAsFixed(2)}\n'
+            '1h: $percentChange1h%', style: TextStyle(color: getColor(percentChange1h)),
     );
   }
 
@@ -136,6 +141,13 @@ class CryptoListWidget extends StatelessWidget {
           currency['percent_change_1h']),
       isThreeLine: true,
     );
+  }
+
+  getColor(String percentChange1h) {
+    if(percentChange1h.contains("-"))
+      return Colors.red;
+    else
+      return Colors.green;
   }
 
 
