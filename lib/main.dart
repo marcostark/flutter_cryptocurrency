@@ -50,10 +50,10 @@ class CryptoListWidget extends StatelessWidget {
         appBar: AppBar(title: Text('Criptomoedas')),
         body: _buildBody(),
         //backgroundColor: Colors.blue,
-        floatingActionButton: new FloatingActionButton(onPressed: (){
-      },
-        child: new Icon(Icons.add_alert),
-      ),
+//        floatingActionButton: new FloatingActionButton(onPressed: (){
+//      },
+//        child: new Icon(Icons.add_alert),
+//      ),
       ),
     );
   }
