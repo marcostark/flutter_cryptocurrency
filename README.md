@@ -1,7 +1,7 @@
 # flutter_criptocurrency
 
 Um aplicativo Flutter que coleta informações sobre valores de criptomoedas
-usando a api https://api.coinmarketcap.com/v1/ticker/.
+usando a [Api: Coinmarketcap](https://api.coinmarketcap.com/v1/ticker/).
 
 ![Tela Inicial](img.png)
 
